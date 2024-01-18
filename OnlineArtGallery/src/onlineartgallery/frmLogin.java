@@ -43,9 +43,9 @@ public class frmLogin extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        signinBtn = new javax.swing.JButton();
         signupBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
+        mainButton1 = new component.mainButton();
         winButton = new component.winButton();
         nameText = new javax.swing.JLabel();
         imgBg = new javax.swing.JLabel();
@@ -53,14 +53,13 @@ public class frmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Welcome Back!");
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel3.setText("Enter your information to sign in.");
 
         usernameLabel.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -72,17 +71,6 @@ public class frmLogin extends javax.swing.JFrame {
         passwordLabel.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         passwordLabel.setText("Password");
 
-        signinBtn.setBackground(new java.awt.Color(204, 102, 0));
-        signinBtn.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        signinBtn.setForeground(new java.awt.Color(255, 255, 255));
-        signinBtn.setText("Sign In");
-        signinBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 153, 0), null));
-        signinBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signinBtnActionPerformed(evt);
-            }
-        });
-
         signupBtn.setBackground(new java.awt.Color(242, 242, 242));
         signupBtn.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         signupBtn.setText("Sign Up");
@@ -91,6 +79,16 @@ public class frmLogin extends javax.swing.JFrame {
         passwordField.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         passwordField.setMargin(new java.awt.Insets(2, 12, 2, 6));
 
+        mainButton1.setBackground(new java.awt.Color(153, 153, 0));
+        mainButton1.setForeground(new java.awt.Color(255, 255, 255));
+        mainButton1.setText("Sign in");
+        mainButton1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        mainButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formBgLayout = new javax.swing.GroupLayout(formBg);
         formBg.setLayout(formBgLayout);
         formBgLayout.setHorizontalGroup(
@@ -98,14 +96,14 @@ public class frmLogin extends javax.swing.JFrame {
             .addGroup(formBgLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(formBgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(signinBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passwordLabel)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(usernameLabel)
                     .addComponent(usernameField)
                     .addComponent(signupBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                    .addComponent(passwordField))
+                    .addComponent(passwordField)
+                    .addComponent(mainButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         formBgLayout.setVerticalGroup(
@@ -123,20 +121,20 @@ public class frmLogin extends javax.swing.JFrame {
                 .addComponent(passwordLabel)
                 .addGap(8, 8, 8)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(signinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
+                .addComponent(mainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(signupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(formBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 430, 480));
         getContentPane().add(winButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
 
-        nameText.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
+        nameText.setFont(new java.awt.Font("Baskerville Old Face", 1, 48)); // NOI18N
         nameText.setForeground(new java.awt.Color(255, 255, 255));
         nameText.setText("T&T Art Gallery");
-        getContentPane().add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
+        getContentPane().add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         imgBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img_login.jpg"))); // NOI18N
         imgBg.setAlignmentY(0.0F);
@@ -147,18 +145,18 @@ public class frmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBtnActionPerformed
+    private void mainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainButton1ActionPerformed
         // TODO add your handling code here:
-        if (usernameField.getText().length() == 0 ||passwordField.getText().length() == 0) {
+        if (usernameField.getText().length() == 0 ||String.valueOf(passwordField.getPassword()).length() == 0) {
             JOptionPane.showMessageDialog(null, "Please input information","Message", JOptionPane.WARNING_MESSAGE);
             return;            
         }
         
-        String connectionUrl = "jdbc:sqlserver://sql.bsite.net\\MSSQL2016;databaseName=htthuy_;user=htthuy_;password=12345678";
+        String connectionUrl = "jdbc:sqlserver://sql.bsite.net\\MSSQL2016;databaseName=htthuy_ArtGallery;user=htthuy_ArtGallery;password=012345678";
         try(Connection con = DriverManager.getConnection(connectionUrl)){
             
             String username = usernameField.getText();
-            String password = passwordField.getText();
+            String password = String.valueOf(passwordField.getPassword());
             
             String SQL = "SELECT * FROM Users WHERE username=? AND password=?";
             PreparedStatement preparedStatement = con.prepareStatement(SQL);
@@ -168,7 +166,7 @@ public class frmLogin extends javax.swing.JFrame {
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next()) {// Valid credentials
-                frmHomepage frm = new frmHomepage();
+                frmMain frm = new frmMain();
                 frm.setVisible(true);
                 
                 dispose();
@@ -181,7 +179,7 @@ public class frmLogin extends javax.swing.JFrame {
         catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_signinBtnActionPerformed
+    }//GEN-LAST:event_mainButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,10 +221,10 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel imgBg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private component.mainButton mainButton1;
     private javax.swing.JLabel nameText;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JButton signinBtn;
     private javax.swing.JButton signupBtn;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;
