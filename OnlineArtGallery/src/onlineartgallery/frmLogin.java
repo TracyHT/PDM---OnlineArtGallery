@@ -25,6 +25,7 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         formBg.setAlpha((float) 0.9);
         setBackground(new Color(0, 0, 0, 0));
+        mainButton1.setLabel("Sign in");
         winButton.initEvent(frmLogin.this);
     }
 

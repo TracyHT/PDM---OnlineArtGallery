@@ -11,7 +11,7 @@ package panels;
 public class panelAbout extends javax.swing.JPanel {
 
     /**
-     * Creates new form panelAbout
+     * Creates new form panelHome
      */
     public panelAbout() {
         initComponents();
@@ -26,19 +26,50 @@ public class panelAbout extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jScrollPane = new javax.swing.JScrollPane();
+        contentPanel = new javax.swing.JPanel();
+        headerText1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        setAlignmentX(0.0F);
+        setAlignmentY(0.0F);
+        setPreferredSize(new java.awt.Dimension(900, 519));
+
+        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setAlignmentX(0.0F);
+        jScrollPane.setAlignmentY(0.0F);
+        jScrollPane.setPreferredSize(new java.awt.Dimension(1200, 600));
+        jScrollPane.setViewportView(null);
+
+        contentPanel.setBackground(new java.awt.Color(231, 233, 205));
+        contentPanel.setForeground(new java.awt.Color(255, 255, 255));
+        contentPanel.setAlignmentX(0.0F);
+        contentPanel.setAlignmentY(0.0F);
+        contentPanel.setPreferredSize(new java.awt.Dimension(900, 2000));
+        contentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headerText1.setFont(new java.awt.Font("Baskerville Old Face", 0, 52)); // NOI18N
+        headerText1.setForeground(new java.awt.Color(0, 51, 51));
+        headerText1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerText1.setLabelFor(contentPanel);
+        headerText1.setText("About Us");
+        headerText1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        headerText1.setPreferredSize(new java.awt.Dimension(500, 64));
+        contentPanel.add(headerText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 541, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img_homepage.jpg"))); // NOI18N
+        contentPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 1200, -1));
+
+        jScrollPane.setViewportView(contentPanel);
+
+        add(jScrollPane);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JLabel headerText1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }

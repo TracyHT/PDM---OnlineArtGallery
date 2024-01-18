@@ -85,18 +85,6 @@ public class frmMain extends javax.swing.JFrame {
 
         navTab.addTab("Artists", panelArtist);
         navTab.addTab("Artworks", panelArtwork);
-
-        javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
-        panelAbout.setLayout(panelAboutLayout);
-        panelAboutLayout.setHorizontalGroup(
-            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1195, Short.MAX_VALUE)
-        );
-        panelAboutLayout.setVerticalGroup(
-            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-        );
-
         navTab.addTab("About Us", panelAbout);
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -111,7 +99,7 @@ public class frmMain extends javax.swing.JFrame {
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(navTab, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addComponent(navTab, javax.swing.GroupLayout.PREFERRED_SIZE, 637, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

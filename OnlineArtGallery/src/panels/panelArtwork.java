@@ -10,7 +10,8 @@ import dataModel.ArtworkDAO;
 import dataModel.ArtworkModel;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -25,32 +26,52 @@ public class panelArtwork extends javax.swing.JPanel {
     public panelArtwork() {
         initComponents();
         setBackground(new Color(231,233,205));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+            "Oil on canvas",
+            "Oil, tempera, pastel and crayon on cardboard",
+            "Tempera on gesso, pitch, and mastic",
+            "Ukiyo-e (Woodblock print)",
+            "Tempera on canvas",
+            "Oil on beaverboard",
+            "Oil on masonite",
+            "Oil on wood",
+            "Oil paint on drawing"
+        }));
         fetchAndDisplayArtworks();
     }
 
     private void fetchAndDisplayArtworks() {
-        ArtworkDAO artworkDAO = new ArtworkDAO();
-        List<ArtworkModel> artworks = artworkDAO.getAllArtworks();
+    ArtworkDAO artworkDAO = new ArtworkDAO();
+    List<ArtworkModel> artworks = artworkDAO.getAllArtworks();
 
-        artworkDisplay.setLayout(new GridLayout(0, 3, 20, 20));
-        artworkDisplay.setOpaque(false);
-        artworkDisplay.setBackground(new Color(231,233,205));
+    // Set layout for artworkDisplay
+    artworkDisplay.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20)); // Left-aligned FlowLayout with 20 pixels horizontal and vertical gap
+    artworkDisplay.setOpaque(false);
+    artworkDisplay.setBackground(new Color(231, 233, 205));
 
-        int count = 0;
-        for (ArtworkModel artwork : artworks) {
-            count++;
-            ArtworkCard cardPanel = new ArtworkCard(artwork);
-            artworkDisplay.add(cardPanel);
-            
-        }
-        
-        artworkDisplay.setPreferredSize(new Dimension(800, (count/3)*500));
-
-        jScrollPane.setViewportView(artworkDisplay);  // Set the display pane as the view of the scroll pane
-
-        revalidate();  // Revalidate the container to reflect the changes
-        repaint();
+    // Add cards to artworkDisplay
+    for (ArtworkModel artwork : artworks) {
+        ArtworkCard cardPanel = new ArtworkCard(artwork);
+        cardPanel.setPreferredSize(new Dimension(250, 270)); // Set fixed size for each card
+        artworkDisplay.add(cardPanel);
     }
+
+    // Set up the scroll pane
+    jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    jScrollPane.setAlignmentX(0.0F);
+    jScrollPane.setAlignmentY(0.0F);
+
+    // Set the preferred size of artworkDisplay based on the number of columns and fixed card size
+    int columns = 3;
+    int rows = (artworks.size() + columns - 1) / columns;
+    artworkDisplay.setPreferredSize(new Dimension(columns * 250 + (columns - 1) * 20, rows * 250 + (rows - 1) * 20));
+
+    revalidate();
+    repaint();
+}
+    
+
 
 
 
@@ -63,24 +84,20 @@ public class panelArtwork extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        headerText = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         contentPanel = new javax.swing.JPanel();
+        headerText = new javax.swing.JLabel();
         artworkDisplay = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
         setPreferredSize(new java.awt.Dimension(900, 519));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        headerText.setFont(new java.awt.Font("Baskerville Old Face", 0, 52)); // NOI18N
-        headerText.setForeground(new java.awt.Color(0, 51, 51));
-        headerText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerText.setLabelFor(contentPanel);
-        headerText.setText("Artworks");
-        headerText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        headerText.setPreferredSize(new java.awt.Dimension(500, 64));
-        add(headerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 541, -1));
 
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -96,19 +113,130 @@ public class panelArtwork extends javax.swing.JPanel {
         contentPanel.setPreferredSize(new java.awt.Dimension(1200, 2000));
         contentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        headerText.setFont(new java.awt.Font("Baskerville Old Face", 0, 52)); // NOI18N
+        headerText.setForeground(new java.awt.Color(0, 51, 51));
+        headerText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerText.setLabelFor(contentPanel);
+        headerText.setText("Artworks");
+        headerText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        headerText.setPreferredSize(new java.awt.Dimension(500, 64));
+        contentPanel.add(headerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 541, -1));
+
         artworkDisplay.setBackground(new java.awt.Color(231, 233, 205));
         artworkDisplay.setPreferredSize(new java.awt.Dimension(900, 88));
-        contentPanel.add(artworkDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 900, 3580));
+        contentPanel.add(artworkDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 900, 3340));
+
+        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jTextField1.setText("Artist Name");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        contentPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 450, 40));
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel1.setText("Medium");
+        contentPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        contentPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        contentPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 450, 40));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel2.setText("Search for artworks:");
+        contentPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         jScrollPane.setViewportView(contentPanel);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, -1, -1));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -6, -1, 750));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String artistName = jTextField1.getText().trim();
+        
+        if (!artistName.isEmpty()) {
+            ArtworkDAO artworkDAO = new ArtworkDAO();
+            List<ArtworkModel> artworks = artworkDAO.searchArtworksByArtist(artistName);
+
+            // Clear the existing artworkDisplay
+            artworkDisplay.removeAll();
+
+            // Add cards for the searched artworks
+            for (ArtworkModel artwork : artworks) {
+                ArtworkCard cardPanel = new ArtworkCard(artwork);
+                cardPanel.setPreferredSize(new Dimension(250, 270));
+                artworkDisplay.add(cardPanel);
+            }
+
+            // Update the layout
+            revalidate();
+            repaint();
+        } else {
+            // Handle empty artistName (you may show a message or handle it as needed)
+            System.out.println("Please enter an artist name");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        artworkDisplay.removeAll();
+
+    // Get the selected medium from the combo box
+    String selectedMedium = (String) jComboBox1.getSelectedItem();
+
+    // Check if the selected medium is not null or empty
+    if (selectedMedium != null && !selectedMedium.isEmpty()) {
+        ArtworkDAO artworkDAO = new ArtworkDAO();
+        List<ArtworkModel> artworks;
+
+        if (selectedMedium.equals("All")) {
+            // Show all artworks
+            artworks = artworkDAO.getAllArtworks();
+        } else {
+            // Show artworks filtered by the selected medium
+            artworks = artworkDAO.getArtworksByMedium(selectedMedium);
+        }
+
+        // Add cards for the filtered artworks
+        for (ArtworkModel artwork : artworks) {
+            ArtworkCard cardPanel = new ArtworkCard(artwork);
+            cardPanel.setPreferredSize(new Dimension(250, 270));
+            artworkDisplay.add(cardPanel);
+        }
+    }
+
+    // Update the layout
+    revalidate();
+    repaint();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel artworkDisplay;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel headerText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

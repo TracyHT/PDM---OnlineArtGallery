@@ -11,9 +11,6 @@ import java.util.List;
 public class ArtistDAO {
 
     // Database connection details
-    //private static final String URL = "sql.bsite.net\\MSSQL2016";
-    // private static final String USER = "htthuy_ArtGallery";
-    //private static final String PASSWORD = "012345678";
     private String connectionUrl = "jdbc:sqlserver://sql.bsite.net\\MSSQL2016;databaseName=htthuy_ArtGallery;user=htthuy_ArtGallery;password=012345678";
 
     public List<artistModel> getAllArtists() {
