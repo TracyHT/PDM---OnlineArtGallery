@@ -132,7 +132,7 @@ public class mainButton extends JButton {
 
         // Draw label
         g2.setColor(getForeground());
-        g2.setFont(new Font("Arial", Font.PLAIN, 12)); // Adjust the font as needed
+        g2.setFont(new Font("Trebuchet MS", 1, 14)); // Adjust the font as needed
         int labelWidth = g2.getFontMetrics().stringWidth(label);
         int labelHeight = g2.getFontMetrics().getHeight();
         int x = (getWidth() - labelWidth) / 2;

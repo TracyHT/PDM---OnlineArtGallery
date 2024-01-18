@@ -39,6 +39,7 @@ public class frmMain extends javax.swing.JFrame {
         navTab = new component.navTab();
         panelHome = new panels.panelHome();
         panelArtist = new panels.panelArtist();
+        panelArtwork = new panels.panelArtwork();
         panelAbout = new panels.panelAbout();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,6 +84,7 @@ public class frmMain extends javax.swing.JFrame {
         panelHome.getAccessibleContext().setAccessibleParent(navTab);
 
         navTab.addTab("Artists", panelArtist);
+        navTab.addTab("Artworks", panelArtwork);
 
         javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
         panelAbout.setLayout(panelAboutLayout);
@@ -171,6 +173,7 @@ public class frmMain extends javax.swing.JFrame {
     private component.navTab navTab;
     private panels.panelAbout panelAbout;
     private panels.panelArtist panelArtist;
+    private panels.panelArtwork panelArtwork;
     private panels.panelHome panelHome;
     private component.winButton winButton;
     // End of variables declaration//GEN-END:variables

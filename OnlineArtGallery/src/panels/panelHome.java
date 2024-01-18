@@ -15,6 +15,7 @@ public class panelHome extends javax.swing.JPanel {
      */
     public panelHome() {
         initComponents();
+        mainButton2.setLabel("Explore");
     }
 
     /**
