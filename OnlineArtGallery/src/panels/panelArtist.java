@@ -8,6 +8,7 @@ import component.artistCard;
 import dataModel.artistModel;
 import java.util.List;
 import dataModel.ArtistDAO;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 /**
@@ -26,17 +27,19 @@ public class panelArtist extends javax.swing.JPanel {
     
     private void fetchAndDisplayArtists() {
     ArtistDAO artistDAO = new ArtistDAO();
-        List<artistModel> artists = artistDAO.getAllArtists();
+    List<artistModel> artists = artistDAO.getAllArtists();
 
-        contentPanel.setLayout(new GridLayout(0, 3));
-        
-        for (artistModel artist : artists) {
-            artistCard cardPanel = new artistCard(artist);
-            contentPanel.add(cardPanel);
-        }
-        
-    contentPanel.revalidate();
-    contentPanel.repaint();
+    artistDisplay.setLayout(new GridLayout(0, 3, 20, 20)); // Added spacing
+    artistDisplay.setOpaque(false);
+    
+
+    for (artistModel artist : artists) {
+        artistCard cardPanel = new artistCard(artist);
+        artistDisplay.add(cardPanel);
+    }
+
+    artistDisplay.revalidate();
+    artistDisplay.repaint();
 }
 
 
@@ -52,6 +55,7 @@ public class panelArtist extends javax.swing.JPanel {
         jScrollPane = new javax.swing.JScrollPane();
         contentPanel = new javax.swing.JPanel();
         headerText = new javax.swing.JLabel();
+        artistDisplay = new javax.swing.JPanel();
 
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
@@ -69,6 +73,7 @@ public class panelArtist extends javax.swing.JPanel {
         contentPanel.setAlignmentX(0.0F);
         contentPanel.setAlignmentY(0.0F);
         contentPanel.setPreferredSize(new java.awt.Dimension(900, 2000));
+        contentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerText.setFont(new java.awt.Font("Baskerville Old Face", 0, 52)); // NOI18N
         headerText.setForeground(new java.awt.Color(0, 51, 51));
@@ -77,29 +82,31 @@ public class panelArtist extends javax.swing.JPanel {
         headerText.setText("Artists");
         headerText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         headerText.setPreferredSize(new java.awt.Dimension(500, 64));
+        contentPanel.add(headerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 541, -1));
 
-        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-        contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(headerText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+        artistDisplay.setOpaque(false);
+        artistDisplay.setPreferredSize(new java.awt.Dimension(800, 88));
+
+        javax.swing.GroupLayout artistDisplayLayout = new javax.swing.GroupLayout(artistDisplay);
+        artistDisplay.setLayout(artistDisplayLayout);
+        artistDisplayLayout.setHorizontalGroup(
+            artistDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
-        contentPanelLayout.setVerticalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(headerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        artistDisplayLayout.setVerticalGroup(
+            artistDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1820, Short.MAX_VALUE)
         );
+
+        contentPanel.add(artistDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 164, 900, 1820));
 
         jScrollPane.setViewportView(contentPanel);
 
         add(jScrollPane);
-        jScrollPane.getAccessibleContext().setAccessibleParent(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel artistDisplay;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel headerText;
     private javax.swing.JScrollPane jScrollPane;
