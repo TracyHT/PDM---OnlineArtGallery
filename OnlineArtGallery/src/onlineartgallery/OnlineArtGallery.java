@@ -15,7 +15,7 @@ public class OnlineArtGallery {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        frmLogin frm = new frmLogin();
+        frmMain frm = new frmMain();
         frm.setVisible(true);
     }
     

@@ -4,20 +4,22 @@
  */
 package onlineartgallery;
 import java.awt.Color;
+import panels.panelHome;
 
 /**
  *
  * @author ADMIN
  */
-public class frmHomepage extends javax.swing.JFrame {
+public class frmMain extends javax.swing.JFrame {
 
     /**
      * Creates new form frmHomepage
      */
-    public frmHomepage() {
+    public frmMain() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        winButton.initEvent(frmHomepage.this);
+        winButton.initEvent(frmMain.this);
+        
     }
 
     /**
@@ -32,38 +34,82 @@ public class frmHomepage extends javax.swing.JFrame {
         bg = new decoration.Background();
         header = new javax.swing.JPanel();
         winButton = new component.winButton();
+        jLabel1 = new javax.swing.JLabel();
+        navTab = new component.navTab();
+        panelHome = new panels.panelHome();
+        panelArtist = new panels.panelArtist();
+        panelAbout = new panels.panelAbout();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+
+        header.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("T&T Art Gallery");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap(846, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(winButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(424, 424, 424)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(winButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        navTab.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        navTab.setPreferredSize(new java.awt.Dimension(1200, 600));
+
+        panelHome.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        panelHome.setPreferredSize(new java.awt.Dimension(1200, 600));
+        navTab.addTab("Home", panelHome);
+        panelHome.getAccessibleContext().setAccessibleParent(navTab);
+
+        navTab.addTab("Artists", panelArtist);
+
+        javax.swing.GroupLayout panelAboutLayout = new javax.swing.GroupLayout(panelAbout);
+        panelAbout.setLayout(panelAboutLayout);
+        panelAboutLayout.setHorizontalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1195, Short.MAX_VALUE)
+        );
+        panelAboutLayout.setVerticalGroup(
+            panelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+
+        navTab.addTab("About Us", panelAbout);
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(navTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 500, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(navTab, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,20 +144,21 @@ public class frmHomepage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmHomepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmHomepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmHomepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmHomepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmHomepage().setVisible(true);
+                new frmMain().setVisible(true);
             }
         });
     }
@@ -119,6 +166,11 @@ public class frmHomepage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private decoration.Background bg;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
+    private component.navTab navTab;
+    private panels.panelAbout panelAbout;
+    private panels.panelArtist panelArtist;
+    private panels.panelHome panelHome;
     private component.winButton winButton;
     // End of variables declaration//GEN-END:variables
 }
