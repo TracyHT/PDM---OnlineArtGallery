@@ -67,15 +67,6 @@ public class artistModel {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-    private String link;
     
     public artistModel (int artistID, String name, String phone, String email, String avatarLink, String socialMediaLink) {
         this.artistID = artistID;

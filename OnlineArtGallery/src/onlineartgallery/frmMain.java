@@ -5,6 +5,7 @@
 package onlineartgallery;
 import java.awt.Color;
 import panels.panelHome;
+import panels.panelArtist;
 
 /**
  *

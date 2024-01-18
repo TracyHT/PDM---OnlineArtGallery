@@ -10,9 +10,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -38,25 +49,94 @@ public class artistCard extends javax.swing.JPanel {
     }
     
     public artistCard(artistModel data) {
+        this.data = data;
         artistName = data.getName();
-        imgURL = data.getLink();
+        imgURL = data.getAvatarLink();
         initComponents();
         initLayout();
+        initEventHandling();
     }
     
     public void initLayout() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(200, 250));
+    setPreferredSize(new Dimension(200, 250));
+    setOpaque(false);
 
-        image.setIcon(new ImageIcon(new ImageIcon(imgURL).getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH)));
-        name.setText(artistName);
-        repaint();
+    try {
+        ImageIcon originalIcon = new ImageIcon(new URL(imgURL));
+        Image originalImage = originalIcon.getImage();
+
+        int width = 200;
+        int height = 250;
+        Image scaledImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+
+        // Use GridBagLayout for better control over centering
+        JPanel textPanel = new JPanel(new GridBagLayout());
+
+        JLabel nameLabel = new JLabel(artistName);
+        nameLabel.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // Set font size
+
+        JButton detailsButton = new JButton("Details");
+        detailsButton.setOpaque(false);
+        detailsButton.setContentAreaFilled(false);
+        detailsButton.setBorderPainted(false);
+
+        // Add an ActionListener to the button to open the details popup
+        detailsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        showArtistDetailsPopup();
+                    }
+                });
+            }
+        });
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        textPanel.add(nameLabel, gbc);
+
+        gbc.gridy = 1;
+        textPanel.add(detailsButton, gbc);
+
+        add(imageLabel, BorderLayout.CENTER);
+        add(textPanel, BorderLayout.SOUTH);
+    } catch (Exception e) {
+        System.err.println("Failed to load image from URL: " + e.getMessage());
+        e.printStackTrace();
+    }
+    }
+    
+    private void showArtistDetailsPopup() {
+    ArtistDetailsPopup popup = new ArtistDetailsPopup(data);
+    popup.setVisible(true);
+}
+    
+    private void initEventHandling() {
+        // Add a mouse click event listener to open the artist details popup
+        this.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        showArtistDetailsPopup();
+                    }
+                });
+            }
+        });
     }
     
     public void setData(artistModel data){
         this.data = data;
         artistName = data.getName();
-        imgURL = data.getLink();
+        imgURL = data.getAvatarLink();
         repaint(); // Repaint when data changes
     }
 
@@ -66,7 +146,7 @@ public class artistCard extends javax.swing.JPanel {
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.white);
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 4, 4);
+        //g2.fillRoundRect(0, 0, getWidth(), getHeight(), 4, 4);
 
         g2.dispose();
         super.paint(g);
@@ -81,41 +161,21 @@ public class artistCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        image = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
-
-        image.setPreferredSize(new java.awt.Dimension(100, 150));
-
-        name.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        name.setText("Artist Name");
+        setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(name)
-                        .addGap(0, 111, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 199, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(name)
-                .addContainerGap(43, Short.MAX_VALUE))
+            .addGap(0, 250, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
