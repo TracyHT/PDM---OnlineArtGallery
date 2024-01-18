@@ -161,6 +161,7 @@ public class artistCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMaximumSize(new java.awt.Dimension(32767, 300));
         setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

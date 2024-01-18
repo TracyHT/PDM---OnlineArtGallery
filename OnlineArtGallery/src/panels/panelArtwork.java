@@ -4,6 +4,14 @@
  */
 package panels;
 
+import component.ArtworkCard;
+import java.util.List;
+import dataModel.ArtworkDAO;
+import dataModel.ArtworkModel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
 /**
  *
  * @author ADMIN
@@ -11,11 +19,40 @@ package panels;
 public class panelArtwork extends javax.swing.JPanel {
 
     /**
-     * Creates new form panelArtwork
+     * Creates new form panelHome
      */
+
     public panelArtwork() {
         initComponents();
+        setBackground(new Color(231,233,205));
+        fetchAndDisplayArtworks();
     }
+
+    private void fetchAndDisplayArtworks() {
+        ArtworkDAO artworkDAO = new ArtworkDAO();
+        List<ArtworkModel> artworks = artworkDAO.getAllArtworks();
+
+        artworkDisplay.setLayout(new GridLayout(0, 3, 20, 20));
+        artworkDisplay.setOpaque(false);
+        artworkDisplay.setBackground(new Color(231,233,205));
+
+        int count = 0;
+        for (ArtworkModel artwork : artworks) {
+            count++;
+            ArtworkCard cardPanel = new ArtworkCard(artwork);
+            artworkDisplay.add(cardPanel);
+            
+        }
+        
+        artworkDisplay.setPreferredSize(new Dimension(800, (count/3)*500));
+
+        jScrollPane.setViewportView(artworkDisplay);  // Set the display pane as the view of the scroll pane
+
+        revalidate();  // Revalidate the container to reflect the changes
+        repaint();
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +63,52 @@ public class panelArtwork extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        headerText = new javax.swing.JLabel();
+        jScrollPane = new javax.swing.JScrollPane();
+        contentPanel = new javax.swing.JPanel();
+        artworkDisplay = new javax.swing.JPanel();
+
+        setAlignmentX(0.0F);
+        setAlignmentY(0.0F);
+        setPreferredSize(new java.awt.Dimension(900, 519));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headerText.setFont(new java.awt.Font("Baskerville Old Face", 0, 52)); // NOI18N
+        headerText.setForeground(new java.awt.Color(0, 51, 51));
+        headerText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerText.setLabelFor(contentPanel);
+        headerText.setText("Artworks");
+        headerText.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        headerText.setPreferredSize(new java.awt.Dimension(500, 64));
+        add(headerText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 541, -1));
+
+        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setAlignmentX(0.0F);
+        jScrollPane.setAlignmentY(0.0F);
+        jScrollPane.setPreferredSize(new java.awt.Dimension(1200, 600));
+        jScrollPane.setViewportView(contentPanel);
+
+        contentPanel.setBackground(new java.awt.Color(231, 233, 205));
+        contentPanel.setForeground(new java.awt.Color(255, 255, 255));
+        contentPanel.setAlignmentX(0.0F);
+        contentPanel.setAlignmentY(0.0F);
+        contentPanel.setPreferredSize(new java.awt.Dimension(1200, 2000));
+        contentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        artworkDisplay.setBackground(new java.awt.Color(231, 233, 205));
+        artworkDisplay.setPreferredSize(new java.awt.Dimension(900, 88));
+        contentPanel.add(artworkDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 900, 3580));
+
+        jScrollPane.setViewportView(contentPanel);
+
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel artworkDisplay;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JLabel headerText;
+    private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }
